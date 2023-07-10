@@ -1,6 +1,7 @@
 package br.com.diefenthaeler.hexagonal.adapters.in.controller.mapper;
 
 import br.com.diefenthaeler.hexagonal.adapters.in.controller.request.CustomerRequest;
+import br.com.diefenthaeler.hexagonal.adapters.in.controller.response.CustomerResponse;
 import br.com.diefenthaeler.hexagonal.application.core.domain.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,4 +15,7 @@ public interface CustomerMapper {
     @Mapping(target = "address", ignore = true)
     @Mapping(target = "isValidCpf", ignore = true)
     Customer toCostumer(CustomerRequest customerRequest);
+
+    CustomerResponse toCustomerResponse(Customer customer);
+
 }
