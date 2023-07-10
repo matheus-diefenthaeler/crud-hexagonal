@@ -9,4 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface CustomerEntityMapper {
     CustomerEntity toCostumerEntity(Customer customer);
+
+    Customer toCostumer(CustomerEntity customerEntity);
 }
