@@ -3,6 +3,7 @@ package br.com.diefenthaeler.hexagonal.adapters.in.controller;
 import br.com.diefenthaeler.hexagonal.adapters.in.controller.mapper.CustomerMapper;
 import br.com.diefenthaeler.hexagonal.adapters.in.controller.request.CustomerRequest;
 import br.com.diefenthaeler.hexagonal.adapters.in.controller.response.CustomerResponse;
+import br.com.diefenthaeler.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import br.com.diefenthaeler.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import br.com.diefenthaeler.hexagonal.application.ports.in.InsertCustomerInputPort;
 import br.com.diefenthaeler.hexagonal.application.ports.in.UpdateCustomerInputPort;
@@ -20,6 +21,7 @@ public class CustomerController {
     private final CustomerMapper customerMapper;
     private final FindCustomerByIdInputPort findCustomerByIdInputPort;
     private final UpdateCustomerInputPort updateCustomerInputPort;
+    private final DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest customerRequest) {
@@ -40,6 +42,12 @@ public class CustomerController {
         var customer = customerMapper.toCostumer(customerRequest);
         customer.setId(id);
         updateCustomerInputPort.update(customer, customerRequest.getZipCode());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        deleteCustomerByIdInputPort.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
