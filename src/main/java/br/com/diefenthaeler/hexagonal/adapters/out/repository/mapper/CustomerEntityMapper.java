@@ -5,6 +5,7 @@ import br.com.diefenthaeler.hexagonal.application.core.domain.Customer;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+
 @Mapper(componentModel = "spring")
 @Component
 public interface CustomerEntityMapper {

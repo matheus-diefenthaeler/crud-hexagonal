@@ -1,4 +1,8 @@
-arantes:
+server:
+  port: 8081
+
+
+diefenthaeler:
   client:
     address:
       url: http://localhost:8082/addresses
@@ -6,4 +10,9 @@ arantes:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/hexagonal
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: example
+      database: hexagonal
